@@ -1,15 +1,9 @@
 String kTemplate = 'template';
 
-String kName = 'name';
-String kId = 'id';
-String kSprites = 'sprites';
-String kTypes = 'types';
-String kType = 'type';
-String kOther = 'other';
-String kOfficialArtwork = 'official-artwork';
-String kFrontDefault = 'front_default';
-String kFrontShiny = 'front_shiny';
-String kPath = 'path';
+String baseUrl = "https://www.thecocktaildb.com/api/json/v1/1";
+String ingredientImageBaseUrl =
+    "https://www.thecocktaildb.com/images/ingredients"; // '/gin-Medium.png'
 
-int maxPokemonId = 1008;
-bool isShiny = true;
+String getAllIngredientsUrl = "/list.php?i=list";
+String getDrinkByIngredientsUrl = "/filter.php?i="; //voka
+String getDrinkDetailUrl = "/lookup.php?i="; //id
