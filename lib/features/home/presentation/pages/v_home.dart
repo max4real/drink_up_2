@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:drink_up_2/features/cocktail/presentation/pages/v_cocktail.dart';
 import 'package:drink_up_2/features/home/presentation/controller/c_home.dart';
 import 'package:flutter/material.dart';
@@ -43,9 +44,14 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         Center(
-                          child: Image.network(
-                            each.image,
-                            fit: BoxFit.cover,
+                          child: CachedNetworkImage(
+                            imageUrl: each.image,
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) =>
+                                    CircularProgressIndicator(
+                                        value: downloadProgress.progress),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
                           ),
                         ),
                         Center(

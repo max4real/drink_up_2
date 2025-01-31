@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:drink_up_2/features/cocktail/presentation/controller/c_cocktail.dart';
+import 'package:drink_up_2/features/details/presentation/pages/v_cocktail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,7 +36,9 @@ class CockTailPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final each = value[index];
                 return GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(DrinkDetailPage(cockTailEntities: each));
+                  },
                   child: Card(
                     color:
                         const Color.fromARGB(255, 108, 118, 228).withOpacity(1),
@@ -44,9 +48,15 @@ class CockTailPage extends StatelessWidget {
                         Expanded(
                           child: Hero(
                             tag: each.image,
-                            child: Image.network(
-                              each.image,
+                            child: CachedNetworkImage(
+                              imageUrl: each.image,
                               fit: BoxFit.fill,
+                              progressIndicatorBuilder:
+                                  (context, url, downloadProgress) =>
+                                      CircularProgressIndicator(
+                                          value: downloadProgress.progress),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
                             ),
                           ),
                         ),
